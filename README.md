@@ -8,7 +8,6 @@
 - 황규태 - 
 
 ## Environment
-- Ubuntu 18.04
 
 ## Summary
 
