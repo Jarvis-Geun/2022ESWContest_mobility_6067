@@ -75,11 +75,9 @@ if __name__ == "__main__":
             SOFI()
         elif State == "VAS":
             VAS()
+            FatigueScore()
+            score_list.pop()
         elif State == "END":
-            if len(score_list) >= 1:
-                FatigueScore()
-            else:
-                print("None Score")
             break
         else:
             print("check Spelling(Input CASE: FAS, SOFI, VAS, END)\n")
