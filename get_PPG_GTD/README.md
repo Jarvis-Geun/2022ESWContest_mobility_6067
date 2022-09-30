@@ -1,24 +1,10 @@
-# Description
-This is the example how to use ArduCam IMX519 AF Module on Jetson Nano/Jetson Xavier NX
+### Reference
+- [Arducam IMX519](https://www.arducam.com/docs/camera-for-jetson-nano/16mp-autofocus-camera-on-jetson-nano-and-xavier-nx/)
+- [IMX519 Github](https://github.com/ArduCAM/Jetson_IMX519_Focus_Example)
 
-# Usage
-* AutofocusTest.py Example of autofocus  
-    python AutofocusTest.py -i 7  
+<br>
 
-    help:  
-    ![help](res/help_autofocus.png)  
-    
-    Tip: The I2C bus of the **CAM0** interface of **Jetson Nano B01 is 7**, and the I2C bus of the **CAM1** interface is **8**.  
-    The I2C bus of the **CAM0** interface of **Jetson Xavier NX is 10**, and the I2C bus of the **CAM1** interface is **9**.
-
-* FocuserExample.py Example of manual focus  
-    python FocuserExample.py -i 7  
-
-    help:  
-    ![help](res/help.png)  
-
-    example:  
-    ![example_cmd](res/example_cmd.png)  
-
-    Screenshot:  
-    ![Screenshot](res/screenshot.png)  
+## How to run
+```shell
+python main.py -n [name of video and ppg] -p [path of directory] -t [seconds of saving video]
+```
