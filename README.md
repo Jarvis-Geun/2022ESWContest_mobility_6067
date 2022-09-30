@@ -5,7 +5,7 @@
 - 박명근 - jarvis.geun@gmail.com
 - 박현종 - qkrguswhd9361@gmail.com 
 - 조현준 - hyeonjun109@naver.com
-- 황규태 - 
+- 황규태 - gyutae741@gmail.com
 
 ## Environment
 
