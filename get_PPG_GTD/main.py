@@ -60,20 +60,16 @@ if __name__ == "__main__":
     while not exit_:
         print("elapsed time : ", time.time()-start_time)
 
-        if time.time()-start_time > 60:
+        if time.time() - start_time > 60:
             print("60 seconds end")
             break
         frame = camera.getFrame(2000)
 
-#        if time.time() - start < 3:
-#            continue
         if py_serial.readable():
             ppg = py_serial.readline()
             f.write(str(i) + ' ' + str(ppg) + '\n')
-            print("ppg : ", ppg)
 
             cv2.imshow("Test", frame)
-#            cv2.imwrite("frames/{}.png".format(i), frame)
             out.write(frame)
             i += 1
             print("i : ", i)
