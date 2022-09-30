@@ -5,10 +5,9 @@ import threading
 import argparse
 import numpy as np
 
-from JetsonCamera import Camera
-from Focuser import Focuser
-from Autofocus import FocusState, doFocus
-from ppg_from_serial import ppg_from_serial
+from camera.JetsonCamera import Camera
+from camera.Focuser import Focuser
+from camera.Autofocus import FocusState, doFocus
 
 exit_ = False
 def sigint_handler(signum, frame):
