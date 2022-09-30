@@ -36,12 +36,12 @@ def parse_cmdline():
     return parser.parse_args()
 
 
-def createFolder(directory):
-    try:
-        if not os.path.exists(directory):
+def createFolder(directory):
+    try:
+        if not os.path.exists(directory):
             os.makedirs(directory)
-    except OSError:
-        print ('Error: Creating directory ' + directory)
+    except OSError:
+        print('Error: Creating directory ' + directory)
 
 
 if __name__ == "__main__":
