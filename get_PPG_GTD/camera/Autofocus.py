@@ -2,8 +2,8 @@ import time
 import cv2
 import numpy as np
 import threading
-from JetsonCamera import Camera
-from Focuser import Focuser
+from camera.JetsonCamera import Camera
+from camera.Focuser import Focuser
 
 try:
     from  Queue import  Queue
