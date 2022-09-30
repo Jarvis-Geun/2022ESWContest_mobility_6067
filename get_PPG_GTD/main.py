@@ -22,7 +22,7 @@ signal.signal(signal.SIGTERM, sigint_handler)
 def parse_cmdline():
     parser = argparse.ArgumentParser(description='Arducam IMX519 Autofocus Demo.')
 
-    parser.add_argument('-i', '--i2c-bus', type=int, nargs=None, required=True, default=7,
+    parser.add_argument('-i', '--i2c-bus', type=int, nargs=None, required=False, default=7,
                         help='Set i2c bus, for A02 is 6, for B01 is 7 or 8, for Jetson Xavier NX it is 9 and 10.')
 
     parser.add_argument('-v', '--verbose', action="store_true", help='Print debug info.')
