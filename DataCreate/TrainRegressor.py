@@ -1,9 +1,9 @@
 '''
-Reference
+<Reference>
 https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.GridSearchCV.html
-
+https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html
+https://wikidocs.net/28895
 '''
-
 
 import sys
 import pandas as pd
