@@ -47,7 +47,7 @@ class FatigueDataset(Dataset):
             try:
                 self.RppgFeatureCsv = pd.read_csv("./data/RppgFeature.csv")
                 self.FacialFeatureCsv = pd.read_csv("./data/FacialFeature.csv")
-                self.y_train = np.array(pd.read_csv("./data/Label.csv")).reshape(-1, 1)
+                self.y_train = np.array(pd.read_csv("./data/Label.csv")['FatigueScore']).reshape(-1, 1)
             except FileNotFoundError:
                 csv_list = [i for i in os.listdir("./data") if ".csv" in i]
                 print(" === csv file list ===")

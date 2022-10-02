@@ -130,7 +130,7 @@ if __name__ == "__main__":
         try:
             RppgFeatureCsv = pd.read_csv("./data/RppgFeature.csv")
             FacialFeatureCsv = pd.read_csv("./data/FacialFeature.csv")
-            y_train = np.array(pd.read_csv("./data/Label.csv"))
+            y_train = np.array(pd.read_csv("./data/Label.csv")['FatigueScore'])
         except FileNotFoundError:
             csv_list = [i for i in os.listdir("./data") if ".csv" in i]
             print(" === csv file list ===")
