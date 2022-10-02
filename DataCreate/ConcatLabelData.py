@@ -31,19 +31,3 @@ if __name__ == "__main__":
             sys.exit()
 
     pd.DataFrame(result, columns=['FatigueScore', 'path']).to_csv(final_path, index=False)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
