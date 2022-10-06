@@ -92,13 +92,13 @@ if __name__ == "__main__":
     if len(sys.argv) == 1:
         final_path = "./data/FacialFeature.csv"
         folders = ["PGH", "PMG", "PHJ", "JHO", "HGT"]
-        a_start = time.time()
+        final_df = pd.DataFrame(columns=['PERCLOSE', 'Excessive Blink', 'Yawn'])
 
         for folder in tqdm(sorted(folders)):
             try:
                 print(" =========== Folder: {} ===========".format(folder))
-                ppgData = [folder+str(i)+".avi" for i in range(1, 11)]
-                for data in ppgData:
+                videos = [folder+str(i)+".avi" for i in range(1, 11)]
+                for data in videos:
                     start = time.time()
                     df = OneVidProcessing(os.path.join(*[data_path, folder, data]))
                     final_df = pd.concat([final_df, df], axis=0)
