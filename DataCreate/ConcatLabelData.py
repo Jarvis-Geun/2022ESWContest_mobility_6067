@@ -15,7 +15,7 @@ if __name__ == "__main__":
 
     for folder in sorted(folders):
         try:
-            LabelData = [i for i in os.listdir(os.path.join(data_path, folder)) if "label" in i]
+            LabelData = [folder + str(i) + "_label.txt" for i in range(1, 11)]
             for data in sorted(LabelData):
                 txt_file = os.path.join(*[data_path, folder, data])
 
@@ -27,7 +27,8 @@ if __name__ == "__main__":
                 for i in range(6):
                     result.append([round(start+(interval*i), 4), data])
         except FileNotFoundError:
-            print("Check your data folder & file name")
+            print("===== Check your data folder & file name =====")
+            print("[FileNotFoundError] {}".format(os.path.join(*[data_path, folder, data])))
             sys.exit()
 
     pd.DataFrame(result, columns=['FatigueScore', 'path']).to_csv(final_path, index=False)
