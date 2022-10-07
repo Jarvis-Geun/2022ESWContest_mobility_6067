@@ -3,6 +3,7 @@ import dlib
 import cv2
 import math
 import pandas as pd
+import numpy as np
 
 import os
 import sys
@@ -25,10 +26,9 @@ def OneVidProcessing(path):
     yawn = False
     blink_cnt, yawn_cnt = 0, 0
 
-    df = pd.DataFrame(columns=['PERCLOSE', 'Excessive Blink', 'Yawn'])
     cap = cv2.VideoCapture(path)
     n_Frame = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
-
+    results = []
     # 첫 번재 프래임 버리기 (첫 번째 ppg 데이터에 오류가 너무 많음)
     _, _ = cap.read()
 
@@ -37,11 +37,12 @@ def OneVidProcessing(path):
             while True:
                 ret, image = cap.read()
                 if frame_cnt == 3000: # 3000 frame 마다 데이터 저장 + 초기화
-                    print(len(df) +1, ':', blink/frame_cnt, ex_blink, yawn)
-                    df = df.append({'PERCLOSE' : blink/frame_cnt, 'Excessive Blink' : ex_blink, 'Yawn': yawn}, ignore_index = True)
+                    print(len(results) + 1, ':', blink/frame_cnt, ex_blink, yawn)
+                    results.append([blink/frame_cnt, ex_blink, yawn])
+                    # df = df.append({'PERCLOSE' : blink/frame_cnt, 'Excessive Blink' : ex_blink, 'Yawn': yawn}, ignore_index = True)
                     ex_blink, blink, frame_cnt = 0, 0, 0
                     yawn = False
-                    if len(df) == 6: break # 한 영상에 Feature 6개
+                    if len(results) == 6: break # 한 영상에 Feature 6개
 
                 if ret:
                     # cv2.imshow("ori", image)
@@ -63,7 +64,7 @@ def OneVidProcessing(path):
                             blink += 1
                             if blink_cnt >= 25: # 1초 이상 눈을 감는 경우 -> excessive blink
                                 ex_blink += 1
-                                blink_cnt    += 0
+                                blink_cnt = 0
                         else:
                             blink_cnt = 0
 
@@ -79,7 +80,9 @@ def OneVidProcessing(path):
                     pbar.set_description("frame: {}".format(frame_cnt))
                 else:
                     break
-    return df
+
+    return_df = pd.DataFrame(np.array(results), columns=['PERCLOSE', 'Excessive Blink', 'Yawn'])
+    return return_df
 
 
 if __name__ == "__main__":
@@ -91,13 +94,15 @@ if __name__ == "__main__":
     a_start = time.time()
     if len(sys.argv) == 1:
         final_path = "./data/FacialFeature.csv"
-        folders = ["PGH", "PMG", "PHJ", "JHO", "HGT"]
+        folders = ["PGH", "geun", "jho", "phj", "hwang"]
         final_df = pd.DataFrame(columns=['PERCLOSE', 'Excessive Blink', 'Yawn'])
 
         for folder in tqdm(sorted(folders)):
             try:
                 print(" =========== Folder: {} ===========".format(folder))
                 videos = [folder+str(i)+".avi" for i in range(1, 11)]
+                if folder == 'hwang':
+                    videos = videos[:-1]
                 for data in videos:
                     start = time.time()
                     df = OneVidProcessing(os.path.join(*[data_path, folder, data]))
@@ -113,13 +118,16 @@ if __name__ == "__main__":
         display(final_df.info())
 
     else:
+        print("Processing Folder: {}".format(sys.argv[1:]))
         for folder_name in sys.argv[1:]:
             print(" =========== Folder: {} ===========".format(folder_name))
             final_df = pd.DataFrame(columns=['PERCLOSE', 'Excessive Blink', 'Yawn'])
             final_path = "./data/{}_FacialFeature.csv".format(folder_name)
             try:
-                ppgData = [folder_name + str(i) + ".avi" for i in range(1, 11)]
-                for data in tqdm(ppgData):
+                videos = [folder_name + str(i) + ".avi" for i in range(1, 11)]
+                if folder_name == 'hwang':
+                    videos = videos[:-1]
+                for data in tqdm(videos):
                     start = time.time()
                     df = OneVidProcessing(os.path.join(*[data_path, folder_name, data]))
                     final_df = pd.concat([final_df, df], axis=0)
@@ -131,5 +139,6 @@ if __name__ == "__main__":
                 sys.exit()
 
             final_df.reset_index().to_csv(final_path, index=False)
+            display(final_df.info())
 
     print("processing time: {:.4f} sec".format(time.time() - a_start))

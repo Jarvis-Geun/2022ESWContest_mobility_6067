@@ -59,7 +59,7 @@ if __name__ == "__main__":
 
     final_path = "./data/RppgFeature.csv"
     data_path = "../get_PPG_GTD"
-    folders = ["PGH", "PMG", "PHJ", "JHO", "HGT"]
+    folders = ["PGH", "geun", "jho", "phj", "hwang"]
 
     final_df = pd.DataFrame(columns=['HR', 'HR_std', 'SDNN', 'LF', 'HF', 'LF/HF'])
     start = time.time()
@@ -68,6 +68,8 @@ if __name__ == "__main__":
         try:
             print(" =========== Folder: {} ===========".format(folder))
             ppgData = [folder+str(i)+".txt" for i in range(1, 11)]
+            if folder == 'hwang':
+                ppgData = ppgData[:-1]
             for data in tqdm(ppgData):
                 ppg = read_text_file(os.path.join(*[data_path, folder, data]))
                 df = pd.DataFrame(columns=['HR', 'HR_std', 'SDNN', 'LF', 'HF', 'LF/HF'])
