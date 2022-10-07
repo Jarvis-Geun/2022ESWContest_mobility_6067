@@ -2,6 +2,8 @@ import numpy as np
 import pandas as pd
 import sys
 import os
+from IPython.display import display
+import time
 
 if __name__ == "__main__":
 
@@ -10,13 +12,16 @@ if __name__ == "__main__":
 
     final_path = "./data/Label.csv"
     data_path = "../get_PPG_GTD"
-    folders = ["PGH", "PMG", "PHJ", "JHO", "HGT"]
+    folders = ["PGH", "geun", "jho", "phj", "hwang"]
     result = []
 
+    start = time.time()
     for folder in sorted(folders):
         try:
             LabelData = [folder + str(i) + "_label.txt" for i in range(1, 11)]
-            for data in sorted(LabelData):
+            if folder == 'hwang':
+                LabelData = LabelData[:-1]
+            for data in LabelData:
                 txt_file = os.path.join(*[data_path, folder, data])
 
                 with open(txt_file, 'r') as f:
@@ -25,10 +30,13 @@ if __name__ == "__main__":
                 end = float(numbers[1].strip("\n"))
                 interval = round((end-start)/5, 6)
                 for i in range(6):
-                    result.append([round(start+(interval*i), 4), data])
+                    result.append(round(start+(interval*i), 4))
         except FileNotFoundError:
             print("===== Check your data folder & file name =====")
             print("[FileNotFoundError] {}".format(os.path.join(*[data_path, folder, data])))
             sys.exit()
 
-    pd.DataFrame(result, columns=['FatigueScore', 'path']).to_csv(final_path, index=False)
+    final_csv = pd.DataFrame(result, columns=['FatigueScore'])
+    final_csv.to_csv(final_path, index=False)
+    display(final_csv.info())
+    print("processing time: {:.4f} sec".format(time.time() - start))
