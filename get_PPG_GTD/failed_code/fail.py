@@ -43,20 +43,6 @@ def createFolder(directory):
     except OSError:
         print('Error: Creating directory ' + directory)
 
-def ppg(path, name, len_time, start_time):
-    f = open("{}/{}.txt".format(path, name), "w")
-
-    i = 0
-    while True:
-        if time.time() - start_time > len_time:
-            f.close()
-            break
-        if py_serial.readable():
-            ppg = py_serial.readline()
-            f.write(str(i) + ' ' + str(ppg) + ' ' + str(time.time()) + '\n')
-        i += 1
-
-
 
 if __name__ == "__main__":
     py_serial = serial.Serial(
@@ -93,31 +79,25 @@ if __name__ == "__main__":
     # for elapsed time
     start_time = time.time()
 
-    cnt = 0
-
-    thread1 = threading.Thread(target=ppg, args=(path, name, len_time, start_time, ))
-    thread1.start()
-
-    label = open("{}/{}_frame_time.txt".format(path, name), "w")
+    i = 0
+    f = open("{}/{}.txt".format(path, name), 'w')
 
     while not exit_:
-        print("elapsed time : {} seconds".format(time.time() - start_time), end='\r')
+        print("elapsed time : {} seconds".format(time.time() - start_time))
 
         if time.time() - start_time > len_time:
             print("{} seconds end".format(len_time))
             break
         frame = camera.getFrame(2000)
 
-        current_time = time.time()
+        if py_serial.readable():
+            ppg = py_serial.readline()
+            f.write(str(i) + ' ' + str(ppg) + '\n')
 
-        cv2.putText(frame, str(current_time), (10, 30), cv2.FONT_HERSHEY_COMPLEX, 0.6, (0, 0, 0), 1)
-
-        label.write(str(cnt) + ' ' + str(current_time) + '\n')
-
-        cv2.imshow("frame", frame)
-        out.write(frame)
-        cnt += 1
-        print("frame count : ", cnt, end='\r')
+            cv2.imshow("frame", frame)
+            out.write(frame)
+            i += 1
+            print("frame count : ", i)
 
         key = cv2.waitKey(1)
         if key == ord('q'):
@@ -131,10 +111,9 @@ if __name__ == "__main__":
 
         frame_count += 1
         if time.time() - start >= 1:
-            print("{}fps".format(frame_count), end='\n\n')
+            print("{}fps".format(frame_count))
             start = time.time()
             frame_count = 0
 
     camera.close()
-    thread1.join()
-    label.close()
+    f.close()
