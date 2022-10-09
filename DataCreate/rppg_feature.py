@@ -13,23 +13,29 @@ import sys
 from IPython.display import display
 import time
 
-def read_text_file(path):
-    array = []
-    with open(path, "r") as f:
-        for line in f:
-            line = line.strip()
-            line = line.split()[1][2:-6]
-            array.append(line)
-        array = array[1:]
-        for i in range(len(array)):
-            try:
-                if float(array[i]) > 5:
-                    array[i] = float(array[i - 1])
-                else:
-                    array[i] = float(array[i])
-            except:
-                array[i] = float(array[i - 1])
-    return np.array(array)
+def read_text_file(ppg_file, video_file):
+    ppg_df = pd.read_csv('/content/phj1.txt', delimiter=' ')
+    video_df = pd.read_csv('/content/phj1_frame_time.txt', delimiter=' ')
+    ppg_df.drop('0', axis=1, inplace=True)
+    ppg_df.columns = ['ppg', 'time']
+    video_df.drop('0', axis=1, inplace=True)
+    video_df.columns = ['time']
+
+    ppg_df.iloc[:, 1] = np.round(ppg_df.iloc[:, 1], 2)
+    video_df.iloc[:, 0] = np.round(video_df.iloc[:, 0], 2)
+    ppg_df = ppg_df.drop_duplicates('time')
+
+    df = pd.merge(video_df,ppg_df, how='inner',on='time')
+    ppg_list = df['ppg']
+    nums = []
+    for i in ppg_list:
+        try:
+            temp = float(i)
+            nums.append(temp)
+        except:
+            nums.append(float(i))
+        
+    return np.array(nums)
 
 
 def mk_df_WESAD(merge):
