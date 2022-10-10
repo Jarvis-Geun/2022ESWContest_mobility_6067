@@ -1,4 +1,8 @@
+FatigueScoreExtraction/data_old
+FatigueScoreExtraction/shape_predictor_68_face_landmarks.dat
+
 DataCreate/data/
+
 get_PPG_GTD/PGH/
 get_PPG_GTD/geun/
 get_PPG_GTD/jho/
