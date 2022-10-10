@@ -1,5 +1,5 @@
 FatigueScoreExtraction/data_old
-FatigueScoreExtraction/shape_predictor_68_face_landmarks.dat
+FatigueScoreExtraction/preprocessing/shape_predictor_68_face_landmarks.dat
 
 DataCreate/data/
 
