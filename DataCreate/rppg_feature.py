@@ -14,8 +14,8 @@ from IPython.display import display
 import time
 
 def read_text_file(ppg_file, video_file):
-    ppg_df = pd.read_csv('/content/phj1.txt', delimiter=' ')
-    video_df = pd.read_csv('/content/phj1_frame_time.txt', delimiter=' ')
+    ppg_df = pd.read_csv(ppg_file, delimiter=' ')
+    video_df = pd.read_csv(video_file, delimiter=' ')
     ppg_df.drop('0', axis=1, inplace=True)
     ppg_df.columns = ['ppg', 'time']
     video_df.drop('0', axis=1, inplace=True)
@@ -77,7 +77,7 @@ if __name__ == "__main__":
             if folder == 'hwang':
                 ppgData = ppgData[:-1]
             for data in tqdm(ppgData):
-                ppg = read_text_file(os.path.join(*[data_path, folder, data]))
+                ppg = read_text_file(os.path.join(data_path, folder, data+".txt"), os.path.join(data_path, folder, data+'_frame_time.txt'))
                 df = pd.DataFrame(columns=['HR', 'HR_std', 'SDNN', 'LF', 'HF', 'LF/HF'])
                 for i in range(6):
                     df.loc[i] = mk_df_WESAD(ppg[3000 * i:3000 * (i + 1)])
@@ -85,7 +85,7 @@ if __name__ == "__main__":
 
         except FileNotFoundError:
             print("===== Check your data folder & file name =====")
-            print("[FileNotFoundError] {}".format(os.path.join(*[data_path, folder, data])))
+            print("[FileNotFoundError] {}".format(os.path.join(*[data_path, folder, data+".txt"])))
             sys.exit()
 
     final_df.reset_index().to_csv(final_path, index=False)
