@@ -1,10 +1,8 @@
 ## Install essential SW on Jetson Nano
-### Reference
 - [Jetson Nano에 JetPack 4.6 + 필수 SW 설치](https://whiteknight3672.tistory.com/314)
 
 
 ## Install Pytorch and torchvision on Jetson Nano
-### Reference
 - [[Q-engineering] Install PyTorch on Jetson Nano](https://qengineering.eu/install-pytorch-on-jetson-nano.html)
 
 
