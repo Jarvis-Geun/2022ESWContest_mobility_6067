@@ -5,7 +5,7 @@ import serial
 print("UART Demonstration Program")
 print("Raspberry Pi4 Server")
 
-def serial_server(server_port, path):
+def serial_server(server_port, path, q):
     # Wait a second to let the port initialize
     try:
         while True:
@@ -16,13 +16,14 @@ def serial_server(server_port, path):
 
                 with open(path, 'a') as f:
                     f.write(data)
-                    
-                # print(data)
-                server_port.write(data)
 
-                if data == "\r".encode():
-                    # For Windows boxen on the other end
-                    server_port.write("\n".encode())
+                q.append(1)
+                # print(data)
+                # server_port.write(data)
+                #
+                # if data == "\r".encode():
+                #     # For Windows boxen on the other end
+                #     server_port.write("\n".encode())
 
 
     except KeyboardInterrupt:
