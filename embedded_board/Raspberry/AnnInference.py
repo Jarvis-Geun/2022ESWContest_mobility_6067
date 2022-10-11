@@ -29,10 +29,12 @@ def main():
     '''
     global Fatigue_score, stress, lf, hf, lf_hf, sdnn, hr
 
+    root_path = '/home/ubuntu'
+
     q = deque([])
-    if not os.path.exists("./data"):
-        os.mkdir("./data")
-    DataPath = "./data/data.txt"
+    if not os.path.exists(root_path + "/data"):
+        os.mkdir(root_path + "/data")
+    DataPath = root_path + "/data/data.txt"
     server_port = serial.Serial(
         port="/dev/ttyS0",
         baudrate=9600,
