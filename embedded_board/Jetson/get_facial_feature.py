@@ -4,6 +4,7 @@ import cv2
 import math
 import pandas as pd
 import numpy as np
+import natsort
 
 def len_xy(p1, p2):
     ret = ((p2[0] - p1[0])**2) + ((p2[1] - p1[1])**2)
@@ -14,7 +15,8 @@ def facial_feature(path):
     ex_blink, blink, frame_cnt = 0, 0, 0
     yawn = False
     blink_cnt, yawn_cnt = 0, 0
-    image_list = os.listdir(path)
+    image_list = natsort.natsorted(os.listdir(path))
+    image_list = image_list[125:-125]
     for i in image_list:
         df = pd.DataFrame(columns=['PERCLOSE', 'Excessive Blink', 'Yawn'])
         gray = cv2.imread(path + i, cv2.IMREAD_GRAYSCALE)
@@ -22,6 +24,7 @@ def facial_feature(path):
         # 영상에 얼굴이 없는 경우 continue
         if  len(detector(gray, 0)) == 0: continue
         else:
+            frame_cnt += 1
             rect = detector(gray, 0)[0]
             shape = predictor(gray, rect)
             shape = face_utils.shape_to_np(shape)
