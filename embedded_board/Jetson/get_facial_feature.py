@@ -9,15 +9,15 @@ def len_xy(p1, p2):
     ret = ((p2[0] - p1[0])**2) + ((p2[1] - p1[1])**2)
     return math.sqrt(ret)
 
-def facial_feature(image_list):
+def facial_feature(path):
     global predictor, detector
     ex_blink, blink, frame_cnt = 0, 0, 0
     yawn = False
     blink_cnt, yawn_cnt = 0, 0
-    
+    image_list = os.listdir(path)
     for i in image_list:
         df = pd.DataFrame(columns=['PERCLOSE', 'Excessive Blink', 'Yawn'])
-        gray = cv2.imread(i, cv2.IMREAD_GRAYSCALE)
+        gray = cv2.imread(path + i, cv2.IMREAD_GRAYSCALE)
 
         # 영상에 얼굴이 없는 경우 continue
         if  len(detector(gray, 0)) == 0: continue
