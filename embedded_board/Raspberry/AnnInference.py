@@ -1,11 +1,12 @@
-import os
-import sys
 import time
-import model
+from model import model
 import torch
 import numpy as np
 import threading
 from collections import deque
+import serial
+import sys
+import os
 
 Fatigue_score = 0.0
 stress = 0.0
@@ -16,12 +17,7 @@ lf_hf = 0.0
 hr = 0.0
 
 sys.path.append(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
-from Jetson import serial_server
-
-def throw(data):
-    print(data)
-    return
-
+import serial_server
 
 def main():
     '''
@@ -46,21 +42,34 @@ def main():
     t = threading.Thread(target=serial_server.serial_server, args=(server_port, DataPath, q))
     t.start()
     Model = model.LinearModel(9, 1)
-    state_dict = "./best_mse_model.pth"
-    Model.load_state_dict(state_dict)
+    state_dict = "./state_dict/best_mse_model.pth"
+    Model.load_state_dict(torch.load(state_dict))
 
     while True:
-        if len(q) >= 1:
-            with open(DataPath, 'r') as f:
-                data = f.readlines()[-1].strip()
+        time.sleep(5)
+        with open(DataPath, 'r') as f:
+            data = f.readlines()
+        if len(data[-1]) == 0:
+            data = data[-2]
+        else:
+            data = data[-1]
 
-            data = torch.FloatTensor(np.array(list(map(float, data))))
-            Fatigue_score = Model(data)
-            pring(data)
-            q.popleft()
+        data = np.array(list(map(float, data.split(","))))
+        hr = data[0]
+        sdnn = data[2]
+        lf = data[3]
+        hf = data[4]
+        lf_hf = data[5]
+        print(data, len(data))
 
+        try:
+            if len(data) == 9:
+                data = torch.FloatTensor(data)
+                Fatigue_score = Model(data)
+                print("Fatigue_score : ", Fatigue_score)
+        except:
+            pass
     return
-
 
 if __name__ == "__main__":
     main()
