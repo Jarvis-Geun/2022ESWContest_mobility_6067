@@ -3,19 +3,23 @@ import random
 
 print('serial ' + serial.__version__)
 
-# Set a PORT Number & baud rate
-PORT = '/dev/ttyTHS1'
-BaudRate = 9600
+# shape of features : 9
+# type of features : list(float)
+def serial_client(client_port, features):
+    i = 1
+    while (True):
+        for i in range(len(features)):
+            if i < len(features) - 1:
+                send_msg = str(features[i]).encode('utf-8') + b','
+            elif i == len(features) - 1:
+                send_msg = b'\n'
+            
+            # features = str(random.random()).encode('utf-8')
+            client_port.write(send_msg)
 
-ARD= serial.Serial(PORT, BaudRate)
+if __name__=="__main__":
+    # Set a PORT Number & baud rate
+    PORT = '/dev/ttyTHS1'
+    BaudRate = 9600
 
-i = 1
-while (True):
-    features = str(random.random()).encode('utf-8')
-
-    if i % 10 == 0:
-        features += b'\n'
-
-    ARD.write(features)
-
-    i += 1
+    client_port = serial.Serial(PORT, BaudRate)
