@@ -22,7 +22,7 @@
 |Python|
 
 ### Editor
-|**Editor*||
+|**Editor**||
 |---|---|
 |Visual Studio Code|Pycharm|
 
@@ -48,8 +48,11 @@
 - 빌트인 캠을 통해 rPPG 신호와 눈 깜빡임, 하품 등의 생체신호를 추출해 줍니다.
 - rPPG신호와 생체신호를 통해 운전자의 건강 상태와 피로도를 예측해 줍니다.
 - 예측결과를 바탕으로 운전자의 상태에 따라 자동으로 차량환경을 조성해 줍니다.
+![image03](https://user-images.githubusercontent.com/69515694/195301949-8005f645-08c3-4cb9-b3ae-651739040247.png)
+![image01](https://user-images.githubusercontent.com/69515694/195301468-94a12305-6f2e-4205-a50f-dc9c76b13ffd.png)
 
 
-## ETC
-- free comment
+## SW 파일구성
+![Screenshot from 2022-10-12 17-24-39](https://user-images.githubusercontent.com/69515694/195302409-08dea94f-c6c2-40c6-b08a-42c35e572737.png)
+
 
