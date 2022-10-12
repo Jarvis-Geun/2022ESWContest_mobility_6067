@@ -2,9 +2,10 @@
 
 ## 팀 소개
 ### 팀명
-HELPER
+- HELPER
 
 ### 작품명
+- Rppg detecting driver assistant
 
 ### 팀원구성
 - 박근형 - park30908@gmail.com
@@ -15,6 +16,12 @@ HELPER
 
 ## Environment
 
+###  Language
+|Language|
+|---|
+|Python|
+
+### Tools
 
 
 ## Summary
