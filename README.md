@@ -17,20 +17,30 @@
 ## Environment
 
 ###  Language
+|Language|
+|---|
 |Python|
 
 ### Editor
+|Editor|
+|---|---|
 |Visual Studio Code|Pycharm|
 
 ### Version Control
+|Version Control|
+|---|---|---|
 |Git|GitHub|Sourcetree|
 
 ### Tools
+|Tools|
+|---|---|---|---|
 |Pytorch|Scikit-learn|OpenCV|Dlib|
 |Pyhrv|Tkinter|Pygame|Google Cloud API|
 |Pandas|Numpy|Matplotlib|Pyserial|
 
 ### OS
+|OSl|
+|---|---|---|
 |Ubuntu18.04|Windows 10|Jetpack 4.6|
 
 ## Summary
