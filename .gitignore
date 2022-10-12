@@ -1,8 +1,8 @@
 FatigueScoreExtraction/data_old
 FatigueScoreExtraction/preprocessing/shape_predictor_68_face_landmarks.dat
 
-GetPPGgtd/PGH/
-GetPPGgtd/geun/
-GetPPGgtd/jho/
-GetPPGgtd/hwang/
-GetPPGgtd/phj/
+GetPpgGtd/PGH/
+GetPpgGtd/geun/
+GetPpgGtd/jho/
+GetPpgGtd/hwang/
+GetPpgGtd/phj/
