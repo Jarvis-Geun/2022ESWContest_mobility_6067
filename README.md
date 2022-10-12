@@ -17,7 +17,6 @@
 ## Environment
 
 ###  Language
-|Language|
 |---|
 |Python|
 
