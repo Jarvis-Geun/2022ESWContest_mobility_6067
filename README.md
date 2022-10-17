@@ -15,33 +15,27 @@
 - 황규태 - gyutae741@gmail.com
 
 ## Environment
-
 ###  Language
-|**Language**|
-|---|
 |Python|
+|---|
 
 ### Editor
-|**Editor**||
-|---|---|
 |Visual Studio Code|Pycharm|
+|---|---|
 
 ### Version Control
-|**Version Control**|||
-|---|---|---|
 |Git|GitHub|Sourcetree|
+|---|---|---|
 
 ### Tools
-|**Tools**||||
-|---|---|---|---|
 |Pytorch|Scikit-learn|OpenCV|Dlib|
+|---|---|---|---|
 |Pyhrv|Tkinter|Pygame|Google Cloud API|
 |Pandas|Numpy|Matplotlib|Pyserial|
 
 ### OS
-|**OS**|||
-|---|---|---|
 |Ubuntu18.04|Windows 10|Jetpack 4.6|
+|---|---|---|
 
 ## Summary
 - 시연영상은 [Youtube](https://www.youtube.com/watch?v=nHCmidi_75A&ab_channel=Jarvis-Geun)를 확인해주세요.
