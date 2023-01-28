@@ -4,6 +4,8 @@
 - [제 20회 임베디드 소프트웨어 경진대회 - 자동차/모빌리티(현대자동차)](https://www.eswcontest.or.kr/competition/industry.php)
 - [임베디드 SW·System 산업협회 회장상](https://www.eswcontest.or.kr/community/notice.php?ptype=view&idx=4381&page=&code=notice)
 
+<br>
+
 ## 팀 소개
 ### 팀명
 - HELPER
