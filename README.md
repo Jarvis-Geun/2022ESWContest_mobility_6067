@@ -1,6 +1,4 @@
 # 2022ESWContest_mobility_6067
-운전자 보조를 위한 rPPG 탐지
-
 ![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=250&section=header&text=📕2022ESWContest_mobility_6067%20&fontSize=40)
 
 `-` 임베디드 소프트웨어 경진대회
