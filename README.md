@@ -1,5 +1,9 @@
 ![header](https://capsule-render.vercel.app/api?type=waving&color=auto&height=250&section=header&text=📕2022ESWContest_mobility_6067%20&fontSize=40)
 
+`-` 임베디드 소프트웨어 경진대회
+- [제 20회 임베디드 소프트웨어 경진대회 - 자동차/모빌리티(현대자동차)](https://www.eswcontest.or.kr/competition/industry.php)
+- [임베디드 SW·System 산업협회 회장상](https://www.eswcontest.or.kr/community/notice.php?ptype=view&idx=4381&page=&code=notice)
+
 ## 팀 소개
 ### 팀명
 - HELPER
@@ -7,7 +11,7 @@
 ### 작품명
 - rPPG detecting driver assistant (운전자 보조를 위한 rPPG 탐지)
 
-### 팀원구성
+### 팀원 구성
 - 박근형 - park30908@gmail.com
 - 박명근 - jarvis.geun@gmail.com
 - 박현종 - qkrguswhd9361@gmail.com 
